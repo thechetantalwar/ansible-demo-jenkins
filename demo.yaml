@@ -1,5 +1,5 @@
 ---
-- hosts: local
+- hosts: lab
   tasks:
     - name: create a file
       copy:
