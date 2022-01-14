@@ -1,0 +1,24 @@
+name: Ansible Lint
+on:
+  push:
+    branches: [ main ]
+jobs:
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Checkout Action  
+        uses: actions/checkout@v2
+        with:
+          repository: thinknyx-technologies-llp/ansible-action
+          token: ${{ GITHUB_TOKEN }}
+          path: ./action
+      - name: Docker Login & Pull Image
+        run: echo  ${{ GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin && docker pull ghcr.io/thinknyx-technologies-llp/ansible-action:v3
+      - name: Ansible Lint Playbook
+        uses: ./action/
+        with:
+          operation: ansible-lint
+          command: -x 
+          arguments: 305 -x 403 -x 303 demo.yaml
