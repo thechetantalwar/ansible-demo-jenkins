@@ -1,0 +1,13 @@
+- hosts: self
+  connection: local
+  tasks:
+    - name: Whoami
+      shell: whoami
+      register: output
+    - name: print the current user
+      debug:
+        var: output.stdout
+    - name: install package
+      apt:
+        name: telnet
+        state: present
