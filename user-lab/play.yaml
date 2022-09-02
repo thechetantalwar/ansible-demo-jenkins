@@ -1,5 +1,4 @@
 - hosts: self
-  connection: local
   tasks:
     - name: Whoami
       shell: whoami
