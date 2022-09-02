@@ -1,4 +1,5 @@
 - hosts: self
+  ansible_user: root
   tasks:
     - name: Whoami
       shell: whoami
