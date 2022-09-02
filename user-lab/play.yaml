@@ -11,3 +11,7 @@
       apt:
         name: telnet
         state: present
+    - name: demo
+      copy:
+        content: Hello
+        dest: /home/ubuntu/demo.txt
